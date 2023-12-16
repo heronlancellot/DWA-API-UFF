@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import trabalho.dwa.eventorganizer.application.usuario.ServicoManterUsuario;
-import trabalho.dwa.eventorganizer.application.usuario.ServicoRecuperarUsuario;
+import trabalho.dwa.eventorganizer.application.service.usuario.ServicoManterUsuario;
+import trabalho.dwa.eventorganizer.application.service.usuario.ServicoRecuperarUsuario;
 import trabalho.dwa.eventorganizer.web.dto.UsuarioDTO;
 
 import java.util.List;
