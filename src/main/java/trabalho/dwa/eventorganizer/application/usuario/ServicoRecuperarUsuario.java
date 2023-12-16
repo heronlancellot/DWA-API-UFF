@@ -1,4 +1,4 @@
-package trabalho.dwa.eventorganizer.application;
+package trabalho.dwa.eventorganizer.application.usuario;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
