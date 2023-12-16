@@ -1,4 +1,4 @@
-package trabalho.dwa.eventorganizer.application.evento;
+package trabalho.dwa.eventorganizer.application.service.evento;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 public class ServicoRecuperarEvento {
 
     private final EventoRepository eventoRepository;
-    private final EventoDTOBuilder builder;
+    private final EventoDTOBuilder eventoDTOBuilder;
 
     public List<EventoDTO> recuperarListaEventos() {
-        return eventoRepository.findAll().stream().map(builder::build)
+        return eventoRepository.findAll().stream().map(eventoDTOBuilder::build)
                 .collect(Collectors.toList());
     }
 }

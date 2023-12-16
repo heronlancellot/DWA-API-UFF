@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import trabalho.dwa.eventorganizer.domain.edicao.Edicao;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -15,6 +18,7 @@ import lombok.Setter;
 public class Evento {
 
     @Id
+    @Column(name = "ID_EVENTO")
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
@@ -26,5 +30,11 @@ public class Evento {
 
     @Column(name = "DESCRICAO", nullable = false)
     private String descricao;
+
+    @Column(name = "CAMINHO")
+    private String caminho;
+
+    @OneToMany(mappedBy = "evento")
+    private List<Edicao> edicoes;
 
 }
