@@ -12,6 +12,7 @@ public class EdicaoDTOBuilder {
     public EdicaoDTO build(Edicao edicao){
         return EdicaoDTO.builder().id(edicao.getId()).ano(edicao.getAno()).cidade(edicao.getCidade())
                 .dataInicial(edicao.getDataInicial()).dataFinal(edicao.getDataFinal()).numero(edicao.getNumero())
+                .organizador(edicao.getOrganizador() != null ? edicao.getOrganizador().getNome() : null)
                 .build();
     }
 

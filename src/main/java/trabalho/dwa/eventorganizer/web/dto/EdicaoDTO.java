@@ -23,6 +23,7 @@ public class EdicaoDTO {
     private String cidade;
     private LocalDate dataInicial;
     private LocalDate dataFinal;
+    private String organizador;
 
     public Edicao toEntity() {
         var edicao = new Edicao();

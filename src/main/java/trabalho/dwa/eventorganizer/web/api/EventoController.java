@@ -62,4 +62,12 @@ public class EventoController {
         return ResponseEntity.ok("Edição alterada com sucesso.");
     }
 
+    @PostMapping(path ="/{idEvento}/edicoes/{idEdicao}/usuario/{idUsuario}" , consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> vincularOrganizadorEdicao(@PathVariable("idEvento") Long idEvento,
+                                                            @PathVariable("idEdicao") Long idEdicao,
+                                                            @PathVariable("idUsuario") Long idUsuario) {
+        servicoManterEdicao.vincularOrganizador(idEvento, idEdicao, idUsuario);
+        return ResponseEntity.ok("Organizador vinculado com sucesso.");
+    }
+
 }

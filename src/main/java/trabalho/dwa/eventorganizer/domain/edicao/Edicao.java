@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import trabalho.dwa.eventorganizer.domain.evento.Evento;
+import trabalho.dwa.eventorganizer.domain.usuario.Usuario;
 
 import java.time.LocalDate;
 
@@ -40,4 +41,8 @@ public class Edicao {
     @ManyToOne
     @JoinColumn(name="ID_EVENTO", nullable=false)
     private Evento evento;
+
+    @OneToOne
+    @JoinColumn(name="ID_USUARIO")
+    private Usuario organizador;
 }
