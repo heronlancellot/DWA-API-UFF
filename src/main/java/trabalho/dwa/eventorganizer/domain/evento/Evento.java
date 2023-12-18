@@ -34,7 +34,7 @@ public class Evento {
     @Column(name = "CAMINHO")
     private String caminho;
 
-    @OneToMany(mappedBy = "evento")
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.REMOVE)
     private List<Edicao> edicoes;
 
 }

@@ -61,7 +61,7 @@ public class Edicao {
     @Column(name = "LINK_INSCRICAO")
     private String linkInscricao;
 
-    @OneToMany(mappedBy = "edicao")
+    @OneToMany(mappedBy = "edicao", cascade = CascadeType.REMOVE)
     private List<Atividade> atividades;
 
 }
