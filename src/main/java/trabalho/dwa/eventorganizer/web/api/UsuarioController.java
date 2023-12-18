@@ -22,7 +22,7 @@ public class UsuarioController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> incluirUsuario(@RequestBody UsuarioDTO usuarioDTO) {
         servicoManterUsuario.cadastrarUsuario(usuarioDTO);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Usuário cadastrado com sucesso.");
     }
 
     @GetMapping

@@ -4,12 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import trabalho.dwa.eventorganizer.application.service.atividade.ServicoAtualizarAtividade;
+import trabalho.dwa.eventorganizer.application.service.atividade.ServicoManterAtividade;
+import trabalho.dwa.eventorganizer.application.service.atividade.ServicoRecuperarAtividade;
 import trabalho.dwa.eventorganizer.application.service.edicao.ServicoAtualizarEdicao;
 import trabalho.dwa.eventorganizer.application.service.edicao.ServicoManterEdicao;
 import trabalho.dwa.eventorganizer.application.service.edicao.ServicoRecuperarEdicao;
 import trabalho.dwa.eventorganizer.application.service.evento.ServicoManterEvento;
 import trabalho.dwa.eventorganizer.application.service.evento.ServicoRecuperarEvento;
 import trabalho.dwa.eventorganizer.application.service.evento.ServicoAtualizarEvento;
+import trabalho.dwa.eventorganizer.domain.usuario.Usuario;
+import trabalho.dwa.eventorganizer.web.dto.AtividadeDTO;
 import trabalho.dwa.eventorganizer.web.dto.EdicaoDTO;
 import trabalho.dwa.eventorganizer.web.dto.EventoDTO;
 
@@ -26,7 +31,9 @@ public class EventoController {
     private final ServicoRecuperarEdicao servicoRecuperarEdicao;
     private final ServicoAtualizarEvento servicoAtualizarEvento;
     private final ServicoAtualizarEdicao servicoAtualizarEdicao;
-
+    private final ServicoAtualizarAtividade servicoAtualizarAtividade;
+    private final ServicoManterAtividade servicoManterAtividade;
+    private final ServicoRecuperarAtividade servicoRecuperarAtividade;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> incluirEvento(@RequestBody EventoDTO eventoDTO) {
@@ -66,8 +73,33 @@ public class EventoController {
     public ResponseEntity<String> vincularOrganizadorEdicao(@PathVariable("idEvento") Long idEvento,
                                                             @PathVariable("idEdicao") Long idEdicao,
                                                             @PathVariable("idUsuario") Long idUsuario) {
+
         servicoManterEdicao.vincularOrganizador(idEvento, idEdicao, idUsuario);
         return ResponseEntity.ok("Organizador vinculado com sucesso.");
+    }
+
+
+    @GetMapping(path ="/{idEvento}/edicoes/{idEdicao}/atividades")
+    public List<AtividadeDTO> recuperarAtividades(@PathVariable("idEvento") Long idEvento,
+                                               @PathVariable("idEdicao") Long idEdicao) {
+        return servicoRecuperarAtividade.recuperarListaAtividades(idEvento, idEdicao);
+    }
+
+    @PostMapping(path ="/{idEvento}/edicoes/{idEdicao}/atividades" , consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> incluirAtividade(@PathVariable("idEvento") Long idEvento,
+                                                   @PathVariable("idEdicao") Long idEdicao,
+                                                   @RequestBody AtividadeDTO atividadeDTO) {
+        servicoManterAtividade.cadastrarAtividade(idEvento, idEdicao, atividadeDTO);
+        return ResponseEntity.ok("Atividade cadastrada com sucesso.");
+    }
+
+    @PutMapping(path ="/{idEvento}/edicoes/{idEdicao}/atividades/{idAtividade}" , consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> alterarAtividade(@PathVariable("idEvento") Long idEvento,
+                                                   @PathVariable("idEdicao") Long idEdicao,
+                                                   @PathVariable("idAtividade") Long idAtividade,
+                                                   @RequestBody AtividadeDTO atividadeDTO) {
+        servicoAtualizarAtividade.alterarAtividade(idEvento, idEdicao, idAtividade, atividadeDTO);
+        return ResponseEntity.ok("Atividade alterada com sucesso.");
     }
 
 }

@@ -1,13 +1,9 @@
 package trabalho.dwa.eventorganizer.web.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import lombok.*;
 import trabalho.dwa.eventorganizer.domain.edicao.Edicao;
-import trabalho.dwa.eventorganizer.domain.evento.Evento;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +20,11 @@ public class EdicaoDTO {
     private LocalDate dataInicial;
     private LocalDate dataFinal;
     private String organizador;
+    private String chamadaTrabalho;
+    private LocalDate prazoSubmissao;
+    private BigDecimal precoLote;
+    private String linkInscricao;
+
 
     public Edicao toEntity() {
         var edicao = new Edicao();
@@ -32,6 +33,10 @@ public class EdicaoDTO {
         edicao.setNumero(getNumero());
         edicao.setDataFinal(getDataFinal());
         edicao.setDataInicial(getDataInicial());
+        edicao.setChamadaTrabalho(getChamadaTrabalho());
+        edicao.setPrazoSubmissao(getPrazoSubmissao());
+        edicao.setPrecoLote(getPrecoLote());
+        edicao.setLinkInscricao(getLinkInscricao());
 
         return edicao;
     }

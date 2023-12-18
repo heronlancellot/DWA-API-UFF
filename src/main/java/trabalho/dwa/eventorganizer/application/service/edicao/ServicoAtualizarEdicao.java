@@ -18,13 +18,17 @@ public class ServicoAtualizarEdicao {
 
         var edicao = edicaoRepository.findById(edicaoDTO.getId()).orElseThrow(() -> new RuntimeException("Edicao não encontrado."));
 
-        if(edicao.getNumero().compareTo(edicaoDTO.getNumero()) == 0) throw new RuntimeException("Número de uma edição vinculada a um evento," +
+        if(edicao.getNumero().compareTo(edicaoDTO.getNumero()) != 0) throw new RuntimeException("Número de uma edição vinculada a um evento," +
                 " não pode ser alterado");
 
         edicao.setCidade(edicaoDTO.getCidade());
         edicao.setDataInicial(edicaoDTO.getDataInicial());
         edicao.setDataFinal(edicaoDTO.getDataFinal());
         edicao.setAno(edicaoDTO.getAno());
+        edicao.setChamadaTrabalho(edicaoDTO.getChamadaTrabalho());
+        edicao.setPrazoSubmissao(edicaoDTO.getPrazoSubmissao());
+        edicao.setPrecoLote(edicaoDTO.getPrecoLote());
+        edicao.setLinkInscricao(edicaoDTO.getLinkInscricao());
 
         edicaoRepository.save(edicao);
     }
